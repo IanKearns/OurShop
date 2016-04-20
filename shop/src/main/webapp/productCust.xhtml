@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<!-- <p:messages id="messages" /> -->
+	<p:growl id="messages" />
+	<p:dataTable var="product" value="#{productCustView.products}" 
+		id="productCustTable">
+	<!-- var is iteration variable of the bean which pulls out a row from products list. -->
+		<p:column headerText="Name">
+			<h:outputText value="#{product.name}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{product.description}" />
+		</p:column>
+		<p:column headerText="Price">
+			<h:outputText value="#{product.price}" />
+		</p:column>
+		<p:column headerText="Imagefile">
+			<h:graphicImage value="#{product.carImage}" />
+		</p:column>
+		<p:column headerText="operations">
+			<h:form>
+				<p:commandButton value="buy"
+					action="#{productCustView.buy(product)}" 
+					resetValues="true" />
+					<!--  update=":CartItemForm"-->
+			</h:form>
+		</p:column>
+	</p:dataTable>
+
+</h:body>
+</html>

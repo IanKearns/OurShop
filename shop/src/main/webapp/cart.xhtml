@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+<title>Shopping Cart</title>
+</h:head>
+<h:body>
+    	<h1>Customer Cart</h1>
+    	
+    <h:form id="form">	
+<p:dataTable value="#{productCustView.thecart}" var="cartItem"   id="cartTable">
+ 		<p:column headerText="Name">
+			<h:outputText value="#{cartItem.getProduct().name}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cartItem.getProduct().description}" />
+		</p:column>
+		<p:column headerText="Price">
+			<h:outputText value="#{cartItem.getProduct().price}" />
+		</p:column>
+		<p:column headerText="Imagefile">
+			<h:graphicImage value="#{cartItem.getProduct().carImage}" />
+		</p:column>
+		<p:column headerText="Quantity">
+			<h:inputText value="#{cartItem.quantity}" />
+		</p:column>
+		<p:column headerText="Item Total">
+			<h:outputText value="#{cartItem.getProduct().price * cartItem.quantity}" />
+		</p:column>		
+    <p:column headerText="operations">
+    
+    
+<p:commandButton  value="remove"
+					actionListener="#{productCustView.remove(cartItem)}" 
+					update=":form"></p:commandButton>
+	
+   </p:column>
+   
+</p:dataTable> 
+<p:commandButton value="update"
+					actionListener="#{productCustView.update}" 
+					update=":form"/>
+</h:form>
+</h:body>
+</html>
